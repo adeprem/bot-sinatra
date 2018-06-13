@@ -118,6 +118,7 @@ def wait_for_command
   puts "Received '#{message.inspect}' from #{message.sender}"
     puts "Received '#{message.inspect}' from #{message.sender}" # debug only
     sender_id = message.sender['id']
+    message.type # let user know we're doing something
     case message.text
     when /sévèrement/i, /moyennement/i, /mal/i, /triste/i, /malheureux/i #the user is stressed
       say(message.sender['id'], ANS_HUMOR[:bad], CAUSE_STRESS) #ask for the causes of the stress
@@ -140,6 +141,7 @@ def wait_for_any_input
   Bot.on :message do |message|
   puts "Received '#{message.inspect}' from #{message.sender}"
     puts "Received '#{message.inspect}' from #{message.sender}"
+    message.type # let user know we're doing something
     show_replies_menu(message.sender['id'], HUMOR)
   end
 end
